@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_home">
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.example.measure_app.ui.home.FragmentHome" >
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_room"
+            app:destination="@id/fragment_room" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_room"
+        android:name="com.example.measure_app.ui.workspace.FragmentRoom" >
+        <action
+            android:id="@+id/action_fragment_room_to_fragment_home"
+            app:destination="@id/fragment_home" />
+        <action
+            android:id="@+id/action_fragment_room_to_fragment_photo"
+            app:destination="@id/fragment_photo" />
+    </fragment>
+    <fragment android:id="@+id/fragment_photo"
+        android:name="com.example.measure_app.ui.photo.FragmentPhoto">
+        <action
+            android:id="@+id/action_fragment_photo_to_fragment_room"
+            app:destination="@id/fragment_room" />
+        <action
+            android:id="@+id/action_fragment_photo_to_fragment_material"
+            app:destination="@id/fragment_material" />
+    </fragment>
+    <fragment android:id="@+id/fragment_material"
+        android:name="com.example.measure_app.ui.material.FragmentMaterial">
+        <action
+            android:id="@+id/action_fragment_material_to_fragment_photo"
+            app:destination="@id/fragment_photo" />
+    </fragment>
+</navigation>

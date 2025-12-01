@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_home"
+    android:background="#F6F3F3">
+
+    <ImageView
+        android:id="@+id/img_bgr"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#57DBBE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/title_home"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bgr"
+        app:layout_constraintStart_toStartOf="@+id/img_bgr"
+        app:layout_constraintTop_toTopOf="@+id/img_bgr" />
+
+    <ImageView
+        android:id="@+id/img_search"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="15dp"
+        android:padding="4dp"
+        android:src="@drawable/icon_search"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="@id/img_bgr"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_View"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bgr_search"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bgr"
+        app:layout_constraintEnd_toEndOf="@+id/img_bgr"
+        app:layout_constraintStart_toStartOf="@+id/img_bgr"
+        app:layout_constraintTop_toTopOf="@+id/img_bgr"
+        app:layout_constraintWidth_percent="0.88" />
+
+    <TextView
+        android:id="@+id/tv_title_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/my_home"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_bgr" />
+
+    <ImageView
+        android:id="@+id/img_measure"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_measure"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_project"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <TextView
+        android:id="@+id/tv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tap_add"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/img_measure"
+        app:layout_constraintStart_toStartOf="@+id/img_measure"
+        app:layout_constraintTop_toBottomOf="@+id/img_measure"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_pr"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_project" />
+
+    <ImageView
+        android:id="@+id/img_bluetooth"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/bgr_icon_bluetooth"
+        android:elevation="4dp"
+        android:padding="10dp"
+        android:src="@drawable/icon_bluetooth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="8dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bgr_icon_add"
+        android:elevation="5dp"
+        android:src="@drawable/icon_add"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bluetooth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

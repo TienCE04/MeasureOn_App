@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgr"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="#F4E0D4"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:elevation="5dp"
+        android:text="@string/name_material"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_name"
+        app:layout_constraintStart_toStartOf="@+id/cv_bgr"
+        app:layout_constraintTop_toTopOf="@+id/edt_name" />
+
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bgr_edt"
+        android:elevation="5dp"
+        android:ellipsize="end"
+        android:hint="@string/edt_name_material"
+        android:maxLines="1"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/cv_bgr"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/cv_bgr"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tv_info1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:text="@string/info_1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_info1"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/edt_info1" />
+
+    <EditText
+        android:id="@+id/edt_info1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bgr_edt"
+        android:elevation="5dp"
+        android:ellipsize="end"
+        android:hint="@string/edt_info"
+        android:maxLines="1"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_name"
+        app:layout_constraintStart_toStartOf="@+id/edt_name"
+        app:layout_constraintTop_toBottomOf="@+id/edt_name"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/edt_info2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bgr_edt"
+        android:elevation="5dp"
+        android:ellipsize="end"
+        android:hint="@string/edt_info"
+        android:maxLines="1"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_info1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_info1"
+        app:layout_constraintTop_toBottomOf="@+id/edt_info1"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tv_info2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:text="@string/info_2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_info2"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/edt_info2" />
+
+    <EditText
+        android:id="@+id/edt_info3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bgr_edt"
+        android:elevation="5dp"
+        android:ellipsize="end"
+        android:hint="@string/edt_info"
+        android:maxLines="1"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_info2"
+        app:layout_constraintStart_toStartOf="@+id/edt_info2"
+        app:layout_constraintTop_toBottomOf="@+id/edt_info2"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tv_info3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:text="@string/info_3"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_info3"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/edt_info3" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="15dp"
+
+        android:backgroundTint="#79E7FA"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintTop_toTopOf="@+id/cv_save"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_save"
+        app:layout_constraintEnd_toStartOf="@+id/cv_delete"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/cv_bgr"
+        app:layout_constraintWidth_percent="0.18">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/cancel"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_delete"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#79E7FA"
+        app:layout_constraintTop_toTopOf="@+id/cv_save"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_save"
+        app:layout_constraintEnd_toStartOf="@+id/cv_save"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/cv_bgr"
+        app:layout_constraintWidth_percent="0.18">
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/tv_delete"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_save"
+        app:layout_constraintTop_toBottomOf="@+id/edt_info3"
+        app:layout_constraintVertical_bias="0.6"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#79E7FA"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_bgr"
+        app:layout_constraintEnd_toEndOf="@+id/cv_bgr"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/cv_bgr"
+        app:layout_constraintWidth_percent="0.18">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/save"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/img_add"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/bgr_icon_add"
+        android:elevation="6dp"
+        android:padding="8dp"
+        android:src="@drawable/icon_add"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_delete"
+        app:layout_constraintEnd_toStartOf="@+id/cv_delete"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cv_bgr"
+        app:layout_constraintTop_toTopOf="@+id/cv_delete"
+        app:tint="@color/black" />
+</androidx.constraintlayout.widget.ConstraintLayout>
