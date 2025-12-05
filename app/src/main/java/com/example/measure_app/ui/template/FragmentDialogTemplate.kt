@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.measure_app.R
 import com.example.measure_app.databinding.FragmentDialogTemplateBinding
+import com.example.measure_app.service.readTemplateListToObject
 import com.example.measure_app.ui.template.adapter.TemplateAdapter
 import com.example.measure_app.ui.template.data.InfoTemplate
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -35,6 +36,8 @@ class FragmentDialogTemplate(private val listener: OnClickDialogTemplate) : Dial
         listTemplate.add(InfoTemplate("template1","111-222-333"))
         listTemplate.add(InfoTemplate("template2","xxx-yyy-zzz"))
         listTemplate.add(InfoTemplate("template3","aaa-bbb-ccc"))
+
+        getDataFromFileJson()
 
         initAdapter()
         initListener()
@@ -70,8 +73,13 @@ class FragmentDialogTemplate(private val listener: OnClickDialogTemplate) : Dial
         }
 
     }
+    private fun getDataFromFileJson(){
+        val listInfoTemplate=readTemplateListToObject(requireContext(),"TemplateFile.json")
+        listTemplate.addAll(listInfoTemplate)
+    }
 
 }
+
 
 
 interface OnClickDialogTemplate {

@@ -1,14 +1,24 @@
 package com.example.measure_app.room.entity
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.PrimaryKey
 
 
-@Entity
+
+@Entity(foreignKeys = [ForeignKey(
+    entity = Home::class,
+    parentColumns = ["idHome"],
+    childColumns = ["idHome"],
+    onDelete = CASCADE
+)])
+
+
 data class RoomInHome(
     @PrimaryKey(autoGenerate = true) val idRoom: Int = 0,
     val name: String = "Phòng mới",
-    val idHome: Int? = null,
+    val idHome: Int,
     val countPhoto: Int = 0,
     val createAt: String,
 ) {

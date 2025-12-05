@@ -1,6 +1,9 @@
 package com.example.measure_app.ui.home
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +29,8 @@ import com.example.measure_app.room.dao.HomeDao
 import com.example.measure_app.room.database.AppDatabase
 import com.example.measure_app.room.entity.Home
 import com.example.measure_app.room.repository.HomeRepository
+import com.example.measure_app.service.mapHeaderToColumnIndex
+import com.example.measure_app.service.readDataStartingFromRow
 import com.example.measure_app.ui.home.adapter.HomeAdapter
 import com.example.measure_app.ui.home.adapter.OnClickPopup
 import com.example.measure_app.ui.home.viewmodel.HomeFactory
@@ -30,6 +38,8 @@ import com.example.measure_app.ui.home.viewmodel.HomeViewModel
 import com.example.measure_app.util.NavOption
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.launch
+import org.apache.poi.ss.usermodel.Workbook
+import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.w3c.dom.Text
 import java.time.LocalDate
 
@@ -48,6 +58,8 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
 
     private var homeUpdate=Home(name = "", createAt = "")
     private lateinit var dialogRename: Dialog
+    private lateinit var pickExcelLauncher: ActivityResultLauncher<Intent>
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,11 +76,24 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
         homeDao = AppDatabase.getDatabase(requireContext()).homeDao()
         initAdapter()
         initBottomSheet()
+        initPickExcel()
         initViewModel()
         initListener()
         initFlow()
     }
 
+
+    private fun initPickExcel(){
+        pickExcelLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                //có uri ở download đọc file
+                val uri = result.data?.data ?: return@registerForActivityResult
+                readExcelFromUri(uri)
+            }
+        }
+    }
     private fun initListener() {
         binding.imgSearch.setOnClickListener(this)
         binding.fragmentHome.setOnClickListener(this)
@@ -128,7 +153,7 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
             createHome()
         }
         view.findViewById<ImageView>(R.id.img_create_room).setOnClickListener{
-            createRoom()
+            addTemplateFromExcel()
         }
         bottomSheetDialog.setContentView(view)
 
@@ -147,7 +172,7 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
     }
 
     private fun createHome(){
-        val home = Home(name = "Nhà mới", createAt = "${LocalDate.now()}")
+        val home = Home(name = "Tầng trệt", createAt = "${LocalDate.now()}")
         lifecycleScope.launch {
             homeViewModel.createHome(home)
         }
@@ -158,10 +183,6 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
         bundle.putInt("idHome",idHome)
         bundle.putString("nameHome",nameHome)
         findNavController().navigate(R.id.action_fragment_home_to_fragment_room,bundle, NavOption.animationFragment)
-    }
-
-    private fun createRoom(){
-
     }
 
     override fun clickItemCopy() {
@@ -177,8 +198,25 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
 
     }
 
-    override fun clickItemDelete() {
+    private fun addTemplateFromExcel(){
+        val intent= Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        }
+        pickExcelLauncher.launch(intent)
+    }
 
+    override fun clickItemDelete(idHome: Int) {
+        val dialog= AlertDialog.Builder(requireContext())
+            .setTitle("Thông báo xóa")
+            .setMessage("Dữ liệu ảnh và phòng sẽ bị xóa, bạn chắc chắn chứ?")
+            .setNegativeButton("Không"){dialog,_->
+                dialog.dismiss()
+            }
+            .setPositiveButton("Có"){dialog,_,->
+                homeViewModel.deleteHome(idHome)
+            }
+        dialog.show()
     }
 
     private fun updateNameHome(name:String){
@@ -191,6 +229,26 @@ class FragmentHome : Fragment(), View.OnClickListener, OnClickPopup {
         }
         else{
             Toast.makeText(requireContext(),"Vui lòng nhập tên mới!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun readExcelFromUri(uri: Uri){
+        try {
+            requireContext().contentResolver.openInputStream(uri)?.use{inputStream->
+                val workBook= WorkbookFactory.create(inputStream)
+                //lấy sheet
+                val sheet=workBook.getSheetAt(0)
+
+                //đọc tên cách cột và chỉ số cột
+                val headerMap= mapHeaderToColumnIndex(sheet)
+                //read data
+                readDataStartingFromRow(requireContext(),sheet,headerMap)
+            }
+            Toast.makeText(requireContext(),"Import thành công!", Toast.LENGTH_SHORT).show()
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+            Toast.makeText(requireContext(),"Import fail!", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.measure_app.ui.photo.viewmodel
 
+import android.os.Environment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.measure_app.room.entity.Photo
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.io.File
 
 class PhotoViewModel(private val photoRepository: PhotoRepository) : ViewModel() {
 
@@ -74,11 +76,12 @@ class PhotoViewModel(private val photoRepository: PhotoRepository) : ViewModel()
     }
 
 
-    fun deletePhoto(idPhoto: Int) {
+    fun deletePhoto(idPhoto: Int,deleteImage:()->Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = photoRepository.deletePhoto(idPhoto)
             if (response) {
                 _event.emit("Xóa thành công!")
+                deleteImage()
             } else {
                 _event.emit("fail")
             }

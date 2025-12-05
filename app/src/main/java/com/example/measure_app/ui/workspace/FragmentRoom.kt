@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.measure_app.R
+import com.example.measure_app.databinding.DialogCreateRoomBinding
 import com.example.measure_app.databinding.FragmentRoomBinding
 import com.example.measure_app.room.dao.RoomDao
 import com.example.measure_app.room.database.AppDatabase
@@ -135,7 +136,8 @@ class FragmentRoom : Fragment(), View.OnClickListener, OnClickItemRoom {
         }
     }
 
-    override fun clickItemDelete() {
+    override fun clickItemDelete(idRoom:Int) {
+        roomViewModel.deleteRoom(idRoom)
         Toast.makeText(requireContext(),"Click Delete", Toast.LENGTH_SHORT).show()
     }
 
@@ -143,7 +145,23 @@ class FragmentRoom : Fragment(), View.OnClickListener, OnClickItemRoom {
         Toast.makeText(requireContext(),"Click Copy", Toast.LENGTH_SHORT).show()
     }
 
-    override fun clickItemRename() {
+    override fun clickItemRename(room: RoomInHome) {
+        val dialog= Dialog(requireContext())
+        val view= DialogCreateRoomBinding.inflate(layoutInflater)
+        dialog.setContentView(view.root)
+        view.tvCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        view.tvRenameOk.setOnClickListener {
+            val newName=view.edtRename.text.toString()
+            if(newName!=""){
+                roomViewModel.updateRoom(RoomInHome(room.idRoom,newName,idHome=room.idHome, createAt = room.createAt))
+            }
+            else{
+                Toast.makeText(requireContext(),"Vui lòng nhập tên mới",Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
         Toast.makeText(requireContext(),"Click Rename", Toast.LENGTH_SHORT).show()
     }
 
@@ -155,6 +173,7 @@ class FragmentRoom : Fragment(), View.OnClickListener, OnClickItemRoom {
         val bundle= Bundle()
         bundle.putInt("idRoom",idRoom)
         bundle.putString("nameRoom",nameRoom)
+        bundle.putString("nameHome",nameHome)
         findNavController().navigate(R.id.action_fragment_room_to_fragment_photo,bundle, NavOption.animationFragment)
     }
 

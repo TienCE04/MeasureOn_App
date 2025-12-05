@@ -18,7 +18,7 @@ class ArrowRepository(private val arrowDao: ArrowDao) {
         }
     }
 
-    suspend fun getListArrow(idPhoto:Int): Flow<DrawingDataArrow>{
+    fun getListArrow(idPhoto:Int): Flow<DrawingDataArrow?>{
         return arrowDao.getListArrow(idPhoto)
     }
 }

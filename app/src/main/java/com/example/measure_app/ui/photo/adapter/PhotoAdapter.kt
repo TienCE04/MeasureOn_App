@@ -1,6 +1,7 @@
 package com.example.measure_app.ui.photo.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.measure_app.databinding.ItemPictureRoomBinding
@@ -23,11 +24,11 @@ class PhotoAdapter(private val listener: OnClickItem) : ListAdapter<Photo, Photo
         val photo = getItem(position)
         holder.bind(photo)
         holder.itemView.setOnClickListener {
-            listener.onClickItem(photo)
+            listener.onClickItem(photo,holder.itemView)
         }
     }
 }
 
 interface OnClickItem{
-    fun onClickItem(photo: Photo)
+    fun onClickItem(photo: Photo,view: View)
 }

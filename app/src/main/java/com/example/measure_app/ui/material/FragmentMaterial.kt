@@ -315,7 +315,9 @@ class FragmentMaterial : Fragment(), View.OnClickListener, OnClickDraw, OnClickD
                     val listArrowDB = data?.arrowList ?: emptyList()
                     val listArrowTmp = listArrowDB.map { it.toArrowDataView() }.toMutableList()
 
-                    binding.drawView.setListArrow(listArrowTmp)
+                    if(data?.idPhoto==idPhoto){
+                        binding.drawView.setListArrow(listArrowTmp)
+                    }
                 }
             }
         }

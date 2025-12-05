@@ -46,7 +46,7 @@ class HomeAdapter(private val listener: OnClickPopup) :
                     }
 
                     R.id.item_delete -> {
-                        listener.clickItemDelete()
+                        listener.clickItemDelete(home.idHome)
                     }
                 }
                 true
@@ -60,7 +60,7 @@ interface OnClickPopup {
     fun clickItemCopy()
     fun clickItemRename(home: Home)
     fun clickItemShare()
-    fun clickItemDelete()
+    fun clickItemDelete(idHome:Int)
 
     fun clickItem(idHome: Int, nameHome: String)
 }

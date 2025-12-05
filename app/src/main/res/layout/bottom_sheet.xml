@@ -67,7 +67,7 @@
         android:id="@+id/tv_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/room"
+        android:text="@string/add_template"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -8,8 +8,8 @@
         android:title="@string/rename" />
     <item
         android:id="@+id/item_share"
-        android:title="Share" />
+        android:title="@string/share" />
     <item
         android:id="@+id/item_delete"
-        android:title="Delete" />
+        android:title="@string/tv_delete" />
 </menu>

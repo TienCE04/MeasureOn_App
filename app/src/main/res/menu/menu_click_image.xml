@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/open"
+        android:title="Mở ảnh"/>
+    <item
         android:id="@+id/info"
         android:title="@string/info_image" />
     <item
         android:id="@+id/edit"
         android:title="@string/edit" />
+    <item
+        android:id="@+id/delete"
+        android:title="@string/tv_delete" />
 </menu>

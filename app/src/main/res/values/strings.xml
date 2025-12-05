@@ -1,18 +1,19 @@
 <resources>
     <string name="app_name">Measure_App</string>
     <string name="title_home">MeasureOn</string>
-    <string name="my_home">Nhà của bạn</string>
+    <string name="my_home">Quản lý tầng</string>
     <string name="tap_add">Chọn + để tạo dự án của bạn</string>
-    <string name="create_new">Tạo mới</string>
-    <string name="home">Nhà</string>
+    <string name="create_new">Thêm mới</string>
+    <string name="home">Tầng</string>
     <string name="room">Phòng</string>
+    <string name="add_template">Thêm template</string>
     <string name="time_create">11:11 PM</string>
     <string name="room_detail">Trần nhà</string>
     <string name="arrow">Arrow</string>
     <string name="angle">Angle</string>
     <string name="text">Text</string>
     <string name="area">Area</string>
-    <string name="info_image">Thông tin vật liệu</string>
+    <string name="info_image">Danh sách vật liệu</string>
     <string name="edit">Chỉnh sửa</string>
     <string name="material">Vật liệu</string>
     <string name="name_material">Tên vật liệu</string>
@@ -20,7 +21,9 @@
     <string name="info_1">Thông số 1</string>
     <string name="info_2">Thông số 2</string>
     <string name="info_3">Thông số 3</string>
-    <string name="edt_info">Nhập thông số</string>
+    <string name="edt_info1">Nhập thông số (Bộ môn)</string>
+    <string name="edt_inf2">Nhập thông số (Kích thước)</string>
+    <string name="edt_inf3">Nhập thông số (Nsx)</string>
     <string name="tv_delete">Xóa</string>
     <string name="tv_edit">Sửa</string>
     <string name="save">Lưu</string>
@@ -42,4 +45,5 @@
     <string name="list_template">Danh sách mẫu</string>
     <string name="attribute">Công dụng sưởi-Ống PPR xanh-Đường kính DN25</string>
     <string name="done">Done</string>
+    <string name="share">Share</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.measure_app.ui.workspace.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import androidx.room.Room
 import com.example.measure_app.databinding.ItemRoomBinding
 import com.example.measure_app.room.entity.RoomInHome
 
@@ -26,13 +27,13 @@ class RoomAdapter(private val listener: OnClickItemRoom) :
             listener.clickItem(room.idRoom,room.name)
         }
         holder.binding.imgDelete.setOnClickListener{
-            listener.clickItemDelete()
+            listener.clickItemDelete(room.idRoom)
         }
         holder.binding.imgMakeCopy.setOnClickListener {
             listener.clickItemCopy()
         }
         holder.binding.imgRename.setOnClickListener {
-            listener.clickItemRename()
+            listener.clickItemRename(room)
         }
         holder.binding.imgShare.setOnClickListener {
             listener.clickItemShare()
@@ -41,9 +42,9 @@ class RoomAdapter(private val listener: OnClickItemRoom) :
 }
 
 interface OnClickItemRoom {
-    fun clickItemDelete()
+    fun clickItemDelete(idRoom:Int)
     fun clickItemCopy()
-    fun clickItemRename()
+    fun clickItemRename(room: RoomInHome)
     fun clickItemShare()
     fun clickItem(idRoom: Int, nameRoom: String)
 }

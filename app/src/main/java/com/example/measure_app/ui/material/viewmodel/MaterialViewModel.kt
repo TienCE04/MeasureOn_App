@@ -8,6 +8,7 @@ import com.example.measure_app.room.repository.ArrowRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 class MaterialViewModel(private val arrowRepository: ArrowRepository) : ViewModel() {
@@ -15,12 +16,19 @@ class MaterialViewModel(private val arrowRepository: ArrowRepository) : ViewMode
     private val _arrowList = MutableStateFlow<DrawingDataArrow?>(null)
     val arrowList: StateFlow<DrawingDataArrow?> = _arrowList
 
+    private val _arrowAllList = MutableStateFlow<List<DrawingDataArrow?>>(emptyList())
+    val arrowAllList: StateFlow<List<DrawingDataArrow?>> = _arrowAllList
+
+
     fun loadArrows(photoId: Int) {
         viewModelScope.launch {
             arrowRepository.getListArrow(photoId)
                 .catch { e -> Log.e("ArrowVM", "Load fail: ${e.message}") }
                 .collect { data ->
-                    _arrowList.value = data
+                    if(data!=null){
+                        Log.d("DEBUGtt",data.toString())
+                        _arrowList.value = data
+                    }
                 }
         }
     }
@@ -34,6 +42,24 @@ class MaterialViewModel(private val arrowRepository: ArrowRepository) : ViewMode
                 }
             } catch (e: Exception) {
                 Log.e("ArrowVM", "Save arrows fail: ${e.message}")
+            }
+        }
+    }
+    fun loadArrowsFromPhotos(photoIds: List<Int>) {
+        viewModelScope.launch {
+            try {
+                val allArrows = mutableListOf<DrawingDataArrow>()
+                for (id in photoIds) {
+                    val arrows = arrowRepository.getListArrow(id)
+                        .catch { e -> Log.e("ArrowVM", "Load fail: ${e.message}") }
+                        .firstOrNull() // lấy giá trị đầu tiên từ Flow
+                    if (arrows != null) {
+                        allArrows.add(arrows)
+                    }
+                }
+                _arrowAllList.value = allArrows
+            } catch (e: Exception) {
+                Log.e("ArrowVM", "Load arrows from photos fail: ${e.message}")
             }
         }
     }
